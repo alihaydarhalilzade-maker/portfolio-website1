@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maison Verlaine — Est. 1998</title>
+<meta name="description" content="Maison Verlaine — classic luxury clothing, crafted with restraint since 1998." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noir:#141414;
+    --paper:#F8F6F1;
+    --stone:#EBE6DA;
+    --text:#1A1A1A;
+    --muted:#726E66;
+    --burgundy:#6E1E2B;
+    --burgundy-dark:#54141E;
+    --line:rgba(20,20,20,0.12);
+    --maxw:1240px;
+    --shadow:0 30px 60px -28px rgba(20,20,20,0.28);
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:'Jost',sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Playfair Display',serif;
+    font-weight:500;
+    margin:0;
+    color:var(--text);
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--burgundy);outline-offset:3px;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+
+  .eyebrow{
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--burgundy);
+    display:flex;align-items:center;gap:12px;
+    margin-bottom:20px;
+  }
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--burgundy);display:inline-block;}
+
+  /* ---------- NAV ---------- */
+  header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(248,246,241,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  nav{max-width:var(--maxw);margin:0 auto;padding:22px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .logo{font-family:'Playfair Display',serif;font-size:22px;letter-spacing:0.06em;color:var(--text);text-transform:uppercase;}
+  .nav-links{display:flex;gap:34px;list-style:none;margin:0;padding:0;}
+  .nav-links a{font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);transition:color 0.2s ease;}
+  .nav-links a:hover{color:var(--text);}
+  .nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--noir);color:var(--paper);font-size:11.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:12px 22px;transition:background 0.2s ease;}
+  .nav-cta:hover{background:var(--burgundy-dark);}
+  .nav-toggle{display:none;background:none;border:none;width:30px;height:22px;position:relative;}
+  .nav-toggle span{position:absolute;left:0;right:0;height:1px;background:var(--text);transition:transform 0.25s ease, opacity 0.25s ease;}
+  .nav-toggle span:nth-child(1){top:1px;}
+  .nav-toggle span:nth-child(2){top:10px;}
+  .nav-toggle span:nth-child(3){top:19px;}
+  .nav-toggle.open span:nth-child(1){transform:translateY(9px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg);}
+
+  /* ---------- HERO ---------- */
+  .hero{height:100vh;min-height:640px;position:relative;display:flex;align-items:flex-end;overflow:hidden;color:#F8F6F1;}
+  .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 20%;}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,20,20,0.15) 0%, rgba(20,20,20,0.25) 40%, rgba(20,20,20,0.78) 100%);}
+  .hero .wrap{position:relative;z-index:1;padding-bottom:90px;}
+  .hero .eyebrow{color:#D9C9A8;}
+  .hero .eyebrow::before{background:#D9C9A8;}
+  .hero h1{font-size:clamp(42px,7vw,84px);line-height:1.02;max-width:760px;margin-bottom:22px;font-style:italic;}
+  .hero p.lede{font-size:17px;color:rgba(248,246,241,0.82);max-width:440px;margin-bottom:38px;font-family:'Jost',sans-serif;letter-spacing:0.01em;}
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;transition:all 0.25s ease;border:1px solid transparent;}
+  .btn-solid{background:#F8F6F1;color:var(--noir);}
+  .btn-solid:hover{background:var(--stone);}
+  .btn-ghost{background:transparent;color:#F8F6F1;border-color:rgba(248,246,241,0.45);}
+  .btn-ghost:hover{border-color:#F8F6F1;background:rgba(248,246,241,0.08);}
+  .btn-dark{background:var(--noir);color:var(--paper);}
+  .btn-dark:hover{background:var(--burgundy-dark);}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:130px 0;}
+  .section-alt{background:var(--stone);}
+  .section-head{max-width:600px;margin-bottom:60px;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-head h2{font-size:clamp(32px,3.8vw,48px);line-height:1.12;font-style:italic;}
+  .section-head p{color:var(--muted);margin-top:16px;font-size:15.5px;}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.8s ease, transform 0.8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- COLLECTIONS ---------- */
+  .collections-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .collection-card{position:relative;aspect-ratio:3/4;overflow:hidden;background-size:cover;background-position:center;}
+  .collection-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 45%, rgba(20,20,20,0.75));transition:background 0.3s ease;}
+  .collection-card:hover::after{background:linear-gradient(180deg, transparent 30%, rgba(20,20,20,0.85));}
+  .collection-info{position:absolute;bottom:0;left:0;right:0;padding:28px;z-index:1;}
+  .collection-info .eyebrow{color:#D9C9A8;margin-bottom:8px;}
+  .collection-info .eyebrow::before{background:#D9C9A8;}
+  .collection-info h3{font-size:26px;color:#F8F6F1;margin-bottom:10px;font-style:italic;}
+  .collection-link{display:inline-flex;align-items:center;gap:8px;color:#F8F6F1;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid rgba(248,246,241,0.5);padding-bottom:3px;transition:border-color 0.2s ease;}
+  .collection-card:hover .collection-link{border-color:#F8F6F1;}
+
+  /* ---------- HERITAGE ---------- */
+  .heritage-grid{display:grid;grid-template-columns:0.95fr 1.05fr;gap:70px;align-items:center;}
+  .heritage-photo{border-radius:2px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/5;background-size:cover;background-position:center;}
+  .heritage-copy p{color:var(--muted);font-size:15.5px;margin-bottom:20px;max-width:460px;}
+  .heritage-year{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--burgundy);margin-top:10px;display:block;}
+
+  /* ---------- ATELIER / PILLARS ---------- */
+  .atelier-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .atelier-photo{border-radius:2px;overflow:hidden;aspect-ratio:5/4;background-size:cover;background-position:center;box-shadow:var(--shadow);}
+  .pillars{display:flex;flex-direction:column;gap:32px;}
+  .pillar{border-top:1px solid var(--line);padding-top:22px;}
+  .pillar h4{font-size:20px;margin-bottom:8px;font-style:italic;}
+  .pillar p{color:var(--muted);font-size:14.5px;margin:0;}
+
+  /* ---------- LOOKBOOK BANNER ---------- */
+  .lookbook{position:relative;height:70vh;min-height:460px;background-size:cover;background-position:center;display:flex;align-items:flex-end;}
+  .lookbook::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(20,20,20,0.65) 0%, transparent 45%);}
+  .lookbook .wrap{position:relative;z-index:1;padding-bottom:56px;}
+  .lookbook .eyebrow{color:#D9C9A8;}
+  .lookbook .eyebrow::before{background:#D9C9A8;}
+  .lookbook h2{color:#F8F6F1;font-size:clamp(28px,4vw,44px);font-style:italic;max-width:560px;}
+
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter{background:var(--noir);color:var(--paper);padding:90px 0;text-align:center;}
+  .newsletter .eyebrow{color:#D9C9A8;justify-content:center;}
+  .newsletter .eyebrow::before{background:#D9C9A8;}
+  .newsletter h2{color:#F8F6F1;font-size:clamp(28px,3.6vw,40px);margin-bottom:16px;font-style:italic;}
+  .newsletter p{color:rgba(248,246,241,0.7);max-width:440px;margin:0 auto 32px;font-size:15px;}
+  .newsletter-form{display:flex;gap:0;max-width:440px;margin:0 auto;border:1px solid rgba(248,246,241,0.35);}
+  .newsletter-form input{flex:1;background:transparent;border:none;padding:16px 18px;color:var(--paper);font-family:'Jost',sans-serif;font-size:14px;}
+  .newsletter-form input::placeholder{color:rgba(248,246,241,0.5);}
+  .newsletter-form input:focus{outline:none;}
+  .newsletter-form button{background:var(--paper);color:var(--noir);border:none;padding:0 26px;font-size:11.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;}
+  .newsletter-note{font-size:12px;color:rgba(248,246,241,0.5);margin-top:16px;}
+
+  /* ---------- MAP / BOUTIQUES ---------- */
+  .map-section .wrap{display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:center;}
+  .map-frame{border-radius:2px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);aspect-ratio:4/3;}
+  .map-frame iframe{width:100%;height:100%;border:0;filter:grayscale(0.6) contrast(1.05);}
+  .contact-line{display:flex;gap:14px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--line);}
+  .contact-line:last-of-type{border-bottom:none;}
+  .contact-line svg{width:18px;height:18px;color:var(--burgundy);flex-shrink:0;margin-top:2px;}
+  .contact-line h4{font-family:'Jost',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px;}
+  .contact-line p{color:var(--muted);font-size:14.5px;margin:0;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--stone);padding:60px 0 34px;}
+  .footer-row{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px;padding-bottom:36px;border-bottom:1px solid var(--line);}
+  .footer-brand .logo{margin-bottom:16px;display:block;}
+  .footer-brand p{color:var(--muted);font-size:14px;max-width:280px;}
+  .footer-links{display:flex;gap:60px;}
+  .footer-links h4{font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text);margin-bottom:18px;font-weight:600;}
+  .footer-links ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
+  .footer-links a{color:var(--muted);font-size:14px;}
+  .footer-links a:hover{color:var(--burgundy);}
+  .footer-bottom{display:flex;justify-content:space-between;padding-top:26px;flex-wrap:wrap;gap:10px;}
+  .footer-bottom p{margin:0;font-size:12px;color:var(--muted);letter-spacing:0.02em;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:980px){
+    .collections-grid{grid-template-columns:1fr;}
+    .heritage-grid{grid-template-columns:1fr;gap:36px;}
+    .atelier-grid{grid-template-columns:1fr;gap:36px;}
+    .map-section .wrap{grid-template-columns:1fr;}
+    .footer-row{flex-direction:column;}
+  }
+  @media (max-width:760px){
+    .wrap{padding:0 22px;}
+    nav{padding:18px 22px;}
+    .nav-links{position:fixed;top:64px;left:0;right:0;background:var(--paper);flex-direction:column;gap:0;border-bottom:1px solid var(--line);max-height:0;overflow:hidden;transition:max-height 0.3s ease;}
+    .nav-links.open{max-height:320px;}
+    .nav-links a{display:block;padding:16px 22px;border-bottom:1px solid var(--line);}
+    .nav-cta{display:none;}
+    .nav-toggle{display:block;}
+    section{padding:84px 0;}
+    .newsletter-form{flex-direction:column;}
+    .newsletter-form button{padding:14px;}
+    .footer-links{flex-direction:column;gap:26px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo" aria-label="Maison Verlaine home">Maison Verlaine</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#heritage">Heritage</a></li>
+      <li><a href="#atelier">Atelier</a></li>
+      <li><a href="#boutiques">Boutiques</a></li>
+    </ul>
+    <a href="#boutiques" class="nav-cta">Book an Appointment</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1686485237008-732142b6fcec?auto=format&fit=crop&w=2000&q=80');"></div>
+    <div class="wrap">
+      <div class="eyebrow">ESTABLISHED 1998</div>
+      <h1>Quiet luxury, cut to last.</h1>
+      <p class="lede">Maison Verlaine has spent three decades making fewer garments, better — tailored in small runs, finished entirely by hand.</p>
+      <div class="btn-row">
+        <a href="#collections" class="btn btn-solid">Explore the Collection</a>
+        <a href="#heritage" class="btn btn-ghost">Our Heritage</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIONS -->
+  <section id="collections">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow" style="justify-content:center;">THE COLLECTIONS</div>
+        <h2 class="reveal">Three wardrobes, one standard</h2>
+      </div>
+      <div class="collections-grid">
+        <div class="collection-card reveal" style="background-image:url('https://images.unsplash.com/photo-1769107805465-bfd41863f1a0?auto=format&fit=crop&w=900&q=80');">
+          <div class="collection-info">
+            <div class="eyebrow">WOMEN</div>
+            <h3>Considered Tailoring</h3>
+            <span class="collection-link">Discover</span>
+          </div>
+        </div>
+        <div class="collection-card reveal" style="background-image:url('https://images.unsplash.com/photo-1580657018950-c7f7d6a6d990?auto=format&fit=crop&w=900&q=80');">
+          <div class="collection-info">
+            <div class="eyebrow">MEN</div>
+            <h3>Structured Ease</h3>
+            <span class="collection-link">Discover</span>
+          </div>
+        </div>
+        <div class="collection-card reveal" style="background-image:url('https://images.unsplash.com/photo-1637759292654-a12cb2be085e?auto=format&fit=crop&w=900&q=80');">
+          <div class="collection-info">
+            <div class="eyebrow">ACCESSORIES</div>
+            <h3>Leather &amp; Hardware</h3>
+            <span class="collection-link">Discover</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERITAGE -->
+  <section id="heritage" class="section-alt">
+    <div class="wrap">
+      <div class="heritage-grid">
+        <div class="heritage-photo reveal" style="background-image:url('https://images.unsplash.com/photo-1753029226995-74b05a344bb1?auto=format&fit=crop&w=900&q=80');"></div>
+        <div class="heritage-copy">
+          <div class="eyebrow">OUR HERITAGE</div>
+          <h2 class="reveal" style="margin-bottom:24px;">A house built on restraint</h2>
+          <p class="reveal">Maison Verlaine opened as a single atelier with four tailors and one rule: nothing leaves the workshop until it's right. That rule never changed, even as the house grew.</p>
+          <p class="reveal">We still work in small seasonal runs, still fit every sample on a live model before it's approved, and still finish every hem, cuff, and buttonhole by hand.</p>
+          <span class="heritage-year reveal">— Paris, est. 1998</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATELIER / PILLARS -->
+  <section id="atelier">
+    <div class="wrap">
+      <div class="atelier-grid">
+        <div class="atelier-photo reveal" style="background-image:url('https://images.unsplash.com/photo-1457972657980-4c9fddebec8d?auto=format&fit=crop&w=900&q=80');"></div>
+        <div>
+          <div class="eyebrow">THE ATELIER</div>
+          <h2 class="reveal" style="margin-bottom:30px;">What we won't compromise on</h2>
+          <div class="pillars">
+            <div class="pillar reveal">
+              <h4>Craftsmanship</h4>
+              <p>Every garment passes through the hands of a single lead tailor from cut to final press.</p>
+            </div>
+            <div class="pillar reveal">
+              <h4>Material</h4>
+              <p>Fabrics are sourced from mills we've worked with for over a decade, chosen for hand-feel first.</p>
+            </div>
+            <div class="pillar reveal">
+              <h4>Longevity</h4>
+              <p>Every piece is built to be repaired, not replaced — we alter and restore Maison Verlaine pieces for life.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOOKBOOK BANNER -->
+  <div class="lookbook" style="background-image:url('https://images.unsplash.com/photo-1580657018950-c7f7d6a6d990?auto=format&fit=crop&w=2000&q=80');">
+    <div class="wrap">
+      <div class="eyebrow">THE CURRENT SEASON</div>
+      <h2>Autumn/Winter — a study in tailored ease.</h2>
+    </div>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div class="wrap">
+      <div class="eyebrow">STAY CONNECTED</div>
+      <h2>Join the house list</h2>
+      <p>Early access to new collections, atelier notes, and private appointment invitations.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Thank You';">
+        <input type="email" placeholder="Your email address" required aria-label="Email address" />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter-note">No spam — a few emails per season, at most.</p>
+    </div>
+  </section>
+
+  <!-- BOUTIQUES -->
+  <section id="boutiques" class="section-alt map-section">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">FLAGSHIP BOUTIQUE</div>
+        <h2 class="reveal" style="margin-bottom:28px;">Visit us in person</h2>
+        <div class="contact-line reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21C12 21 19 14.5 19 9.5C19 5.36 15.64 2 12 2C8.36 2 5 5.36 5 9.5C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <div><h4>Address</h4><p>745 Madison Avenue, New York, NY 10065</p></div>
+        </div>
+        <div class="contact-line reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.4 2.1L8 10.1a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.6 2z"/></svg>
+          <div><h4>Phone</h4><p>(212) 555-0148</p></div>
+        </div>
+        <div class="contact-line reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <div><h4>Email</h4><p>boutique@maisonverlaine.example</p></div>
+        </div>
+        <div class="contact-line reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <div><h4>Hours</h4><p>Mon – Sat, 10:00 – 19:00 · Sunday by appointment</p></div>
+        </div>
+      </div>
+      <div class="map-frame reveal">
+        <iframe
+          src="https://www.google.com/maps?q=745+Madison+Avenue,+New+York,+NY+10065&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Maison Verlaine flagship boutique location">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <div class="footer-brand">
+        <a href="#top" class="logo">Maison Verlaine</a>
+        <p>Classic luxury clothing, crafted with restraint since 1998.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#heritage">Heritage</a></li>
+            <li><a href="#atelier">Atelier</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><span>745 Madison Avenue</span></li>
+            <li><span>New York, NY 10065</span></li>
+            <li><a href="mailto:boutique@maisonverlaine.example">boutique@maisonverlaine.example</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Maison Verlaine. All rights reserved.</p>
+      <p>Design portfolio piece — a fictional fashion house built to demonstrate web design craft. Photos via Unsplash.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  // Header shadow on scroll
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    header.style.boxShadow = window.scrollY > 20 ? '0 1px 0 rgba(20,20,20,0.08)' : 'none';
+  });
+</script>
+
+</body>
+</html>
